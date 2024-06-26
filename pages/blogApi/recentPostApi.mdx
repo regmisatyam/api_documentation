@@ -1,0 +1,192 @@
+# Recent Post API
+
+## Base URL
+
+```file filename="base url" {3} copy
+https://blogs.satyamregmi.com.np/api/blogApi/recommended-post-api.php
+```
+
+## API Parameters
+
+API Parameters are used to retrieve posts on the basis of provided parameters in the url. Either recieve by category, author or id of post.
+
+### 1. Category 
+```html filename="Category" {} copy
+https://blogs.satyamregmi.com.np/api/blogApi/recommended-post-api.php?category=Technology
+
+Currently we have only three categories:
+a) FunFacts
+b) Updates
+c) Technology
+
+You can retrieve blog posts from any of these categories. Categories are case sensitive remember to use properly!!!
+```
+
+### 2. Author Name
+```html filename="Author name" {} copy
+https://blogs.satyamregmi.com.np/api/blogApi/recommended-post-api.php?authorName=Satyam Regmi
+```
+
+### 3. Post IDs
+```html filename="Id" {} copy
+https://blogs.satyamregmi.com.np/api/blogApi/recommended-post-api.php?id=1
+
+OR,
+
+https://blogs.satyamregmi.com.np/api/blogApi/recommended-post-api.php?id=1,2,3,4
+```
+
+## Example of Fetching API Data using HTML, CSS and JS.
+
+### Create files as:
+```html filename="index.html" {} copy
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Posts API Fetching </title>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card-container-main">
+    <h4 class="recommended-post-home-1">
+        <span class="black-box">Recommended Posts</span>
+    </h4>
+    <div class="r-card-container" id="postContainer">
+        <!-- Posts will be dynamically added here -->
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+```
+
+```js filename="script.js" copy
+
+// Fetch data from the API
+fetch('https://blogs.satyamregmi.com.np/api/blogApi/recommended-post-api.php')
+  .then(response => response.json())
+  .then(data => {
+    // Handle the response data
+    const postContainer = document.getElementById('postContainer');
+
+    // Loop through each post and create HTML markup for cards
+    data.forEach(post => {
+      const cardDiv = document.createElement('div');
+      cardDiv.classList.add('card');
+
+      // HTML markup for the card
+      cardDiv.innerHTML = `
+                    <img src="https://blogs.satyamregmi.com.np/uploads/${post.image}" alt="${post.title}" draggable="false">
+                    <div class="content">
+                    <a href="https://blogs.satyamregmi.com.np/${post.slug}/">
+                        <h2>${post.title}</h2></a>
+                        <p>${truncateContent(post.contents)}</p>
+                        <div class="author-contents">
+                            <span class="author"><i class="fas fa-feather"></i> ${post.authorName}</span>
+                            <span class="date"><i class="far fa-calendar"></i> ${post.date}</span>
+                        </div>
+                    </div>
+                `;
+
+      // Append the card to the container
+      postContainer.appendChild(cardDiv);
+    });
+  })
+  .catch(error => console.error('Error fetching data:', error));
+
+// Function to truncate content
+function truncateContent(content) {
+  // Truncate content if exceeds limits
+  const paragraphs = content.split('\n');
+  const numParagraphs = paragraphs.length;
+  const words = content.split(/\s+/).length;
+
+  if (numParagraphs > 3 || words > 40) {
+    let truncatedContent = paragraphs.slice(0, 3).join(' ');
+    truncatedContent = truncatedContent.split(/\s+/).slice(0, 20).join(' ');
+    return truncatedContent + '....';
+  } else {
+    return content;
+  }
+}
+
+```
+
+```css filename="style.css" {} copy
+.card-container-main{
+    margin: 30px 0px 50px 0px;
+}
+.r-card-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-width: -webkit-fill-available;
+    justify-content: center;
+}
+.card {
+    width: -webkit-fill-available;
+    border-radius: 5px;
+    padding: 0px;
+    margin: auto;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card img {
+    width: 100%;
+    border-radius: 5px;
+    background-size: cover;
+    height: 220px;
+}
+
+.card .content {
+    padding: 0px 10px;
+}
+
+ .card h2 {
+    font-size: 16px;
+    margin: 4px 0px 0px 3px;
+    font-weight: bold;
+}
+
+.card p {
+    font-size: 14px;
+    margin: 5px 0;
+    text-align: justify;
+}
+.link {
+    color: var(--clr-blue);
+    font-size: 13px;
+}
+.author-contents {
+    font-size: 10px;
+    color: var(--clr-grey);
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.author-contents i {
+    padding: 2px;
+}
+.recommended-post-home-1 {
+    border-bottom: 2px solid #000;
+    padding-top: 40px;
+}
+h4 .black-box {
+    display: inline-block;
+    padding: 7px 12px 4px;
+    background-color: #222;
+    color: #fff;
+}
+```
+
+With above documentation you will be able to load all available posts of database.
+
+For more please contact us at:
+1. [https://satyamregmi.com.np/contact/](https://satyamregmi.com.np/contact/)
+2. [Email: info@satyamregmi.com.np](Email Us)

@@ -1,6 +1,6 @@
 {
-  "index": "Home",
-  "js-projects": "JS Projects",
+  "index": "Introduction",
+  "blogApi": "Blog Api",
   
   "/": {
     "title": "Home",
