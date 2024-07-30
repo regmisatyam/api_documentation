@@ -3,16 +3,16 @@
 ## Base URL
 
 ```file filename="base url" {3} copy
-https://blogs.satyamregmi.com.np/api/blogApi/recommended-post-api.php
+https://blogs.satyamregmi.com.np/api/blog/
 ```
 
 ## API Parameters
 
-API Parameters are used to retrieve posts on the basis of provided parameters in the url. Either recieve by category, author or id of post.
+API Parameters are used to retrieve posts on the basis of provided parameters in the url. Either recieve by category, author or id of post with limits.
 
 ### 1. Category 
 ```html filename="Category" {} copy
-https://blogs.satyamregmi.com.np/api/blogApi/recommended-post-api.php?category=Technology
+https://blogs.satyamregmi.com.np/api/blog/?category=Technology
 
 Currently we have only three categories:
 a) FunFacts
@@ -24,16 +24,25 @@ You can retrieve blog posts from any of these categories. Categories are case se
 
 ### 2. Author Name
 ```html filename="Author name" {} copy
-https://blogs.satyamregmi.com.np/api/blogApi/recommended-post-api.php?authorName=Satyam Regmi
+https://blogs.satyamregmi.com.np/api/blog/?authorName=Satyam Regmi
 ```
 
 ### 3. Post IDs
 ```html filename="Id" {} copy
-https://blogs.satyamregmi.com.np/api/blogApi/recommended-post-api.php?id=1
+https://blogs.satyamregmi.com.np/api/blog/?id=1
 
 OR,
 
-https://blogs.satyamregmi.com.np/api/blogApi/recommended-post-api.php?id=1,2,3,4
+https://blogs.satyamregmi.com.np/api/blog/?id=1,2,3,4
+```
+
+### 4. Limit
+```html filename="limit" {} copy
+https://blogs.satyamregmi.com.np/api/blog/?limit=5
+
+OR,
+
+https://blogs.satyamregmi.com.np/api/blog/?category=Technology&limit=3
 ```
 
 ## Example of Fetching API Data using HTML, CSS and JS.
@@ -68,7 +77,7 @@ https://blogs.satyamregmi.com.np/api/blogApi/recommended-post-api.php?id=1,2,3,4
 ```js filename="script.js" copy
 
 // Fetch data from the API
-fetch('https://blogs.satyamregmi.com.np/api/blogApi/recommended-post-api.php')
+fetch('https://blogs.satyamregmi.com.np/api/blog/')
   .then(response => response.json())
   .then(data => {
     // Handle the response data
