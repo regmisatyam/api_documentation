@@ -1,7 +1,6 @@
 {
   "index": "Introduction",
   "blogApi": "Blog Api",
-  "blogPostApi": "Blog Post Api",
   
   "/": {
     "title": "Home",
