@@ -35,7 +35,7 @@ const config: DocsThemeConfig = {
 </svg>
     )
   },
-  docsRepositoryBase: 'https://github.com/regmisatyam/api_documentation',
+  docsRepositoryBase: 'https://github.com/regmisatyam/api_documentation/blob/main/',
   footer: {
     component: (
       <Footer />
