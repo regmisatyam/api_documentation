@@ -18,5 +18,12 @@
     "type": "page",
     "href": "https://satyamregmi.com.np/contact",
     "newWindow": true
+  },
+
+  "main": {
+    "title": "Main ↗",
+    "type": "page",
+    "href": "https://satyamregmi.com.np/",
+    "newWindow": true
   }
 }
